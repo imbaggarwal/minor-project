@@ -1,0 +1,135 @@
+@import url('https://fonts.googleapis.com/css?family=Fira+Sans:400,500,600,700,800');
+* {
+  box-sizing: border-box;
+}
+
+/**navbar styling**/
+body {
+  background: #ffff;
+  min-height: 100vh;
+  display: flex;
+  font-weight: 400;
+  font-family: 'Fira Sans', sans-serif;
+}
+.navbar{
+    background-color: #3F4E4F
+  }
+.nav-link{
+  color:#f7f7f7;
+}
+.navBar-text{
+    color:#f7f7f7;
+}
+
+#offcanvasNavbarDropdown-expand-md{
+    color:white;
+}
+h1,h2,h3,h4,h5,h6,label,span {
+  font-weight: 500;
+  font-family: 'Fira Sans', sans-serif;
+}
+
+/**signup and login page styling**/
+body, #root, .auth-wrapper {
+  padding-top: 20px;
+  width: 100%;
+  height: 100%;
+}
+
+.auth-wrapper {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  text-align: left;
+  background: #f7f7f7;
+}
+.auth-inner {
+  width: auto;
+  margin-left:15%;
+  margin-right:15%;
+  margin-bottom:10%;
+  margin-top: 10%;
+  background:#f2ebea;
+  box-shadow: 0px 15px 16.83px rgba(220, 201, 201, 0.929);
+  padding: 40px 55px 45px 55px;
+  border-radius: 15px;
+  transition: all .3s;
+}
+.login{
+    background: #f4eceb;
+}
+
+
+.auth-wrapper h3 {
+  text-align: center;
+  margin: 0;
+  line-height: 1;
+  padding-bottom: 20px;
+}
+.custom-control-label {
+  font-weight: 400;
+}
+.loginImage{
+    max-width: 110%;
+    margin-top:8%;
+    margin-left:5%;
+}
+.signupImage{
+    max-width: 110%;
+    margin-top:25%;
+    margin-left:5%;
+}
+.forgot-password,
+.forgot-password a {
+  text-align: right;
+  font-size: 13px;
+  padding-top: 10px;
+  color: #7f7d7d;
+  margin: 0;
+}
+.forgot-password a {
+  color: #167bff;
+}
+
+/**Products page css**/
+
+.product-body{
+  background: #f4eceb;
+  background-image: url("https://www.transparenttextures.com/patterns/asfalt-light.png");
+
+}
+.selling{
+  padding-top:50px;
+  padding-bottom:25px;
+  text-align:center;
+}
+
+.selling-btn{
+  width:650px;
+}
+.product-cols{
+  margin:50px;
+}
+.product-img img{
+  padding:5px;
+  width: fit-content;
+  height: 400px;
+}
+
+.product-desc{
+  text-align:center;
+  padding: 4px;
+  margin-bottom: 2px;
+}
+
+.product-btn{
+  text-align:center;
+}
+
+.bid{
+  margin-right:10px;
+}
+
+.timer{
+  margin-left:5px;
+}
