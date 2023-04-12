@@ -65,16 +65,14 @@ function Product(props){
           <Modal.Title>{props.name} Bid</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-        {/* <Alert variant="danger" show={showAlert} onClose={() => setAlert(false)} dismissible>
-      <Alert.Heading>Min bid price is {props.price}</Alert.Heading>
-    </Alert> */
+        
     <Toast className ="price-toast" bg="danger" show={showAlert} onClose={() => setAlert(false)} delay={3000} autohide>
         <Toast.Header>
           <strong className="me-auto">Error</strong>
         </Toast.Header>
         <Toast.Body>Min bid price is {props.price}</Toast.Body>
       </Toast>
-    }
+    
         <form >
             <input type="Number" name = "bid"  placeholder={props.price} min={props.price} required onChange={handleChange}></input>
         </form>
