@@ -1,29 +1,45 @@
 import React from "react";
-import products from '../products.js';
+import {useEffect, useState} from 'react';
+//import products from '../products.js';
 import Product from './Product.jsx';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Button from 'react-bootstrap/Button';
+import axios from 'axios';
+import NavbarBar from './Navbar.jsx';
 
-function createProduct(prod){
-    return(
-        <Product 
-            key = {prod.id}
-            name = {prod.name}
-            description = {prod.description}
-            img = {prod.imgURL}
-        />);
-}
 
 function Products(){
-return(<Container fluid className="product-body">
+    //console.log(localStorage.getItem("user"));
+    const[products,setProduct] = useState([{}]);
+    useEffect(()=>{
+        const fetchData = async() =>{
+        const result = await axios.get("/products");
+        setProduct(result.data);
+    };
+    fetchData();
+    
+    },[]);
+    
+  
+return(<><NavbarBar />
+<Container fluid className="product-body">
     <div className="selling">
-        <Button variant="danger" size="lg" href="/sell" classNam="selling-btn">Sell</Button>
+        <Button variant="danger" size="lg" href="/sell" classNam="mb-2 selling-btn">Sell</Button>
     </div>
+    
     <Row>
-    {products.map(createProduct)}
+    {products.map((prod)=>{
+    return(
+        <Product 
+            key = {prod._id}
+            name = {prod.name}
+            description = {prod.description}
+            img = {prod.image}
+            price = {prod.price}
+        />)})}
     </Row>
-</Container>);
+</Container></>);
 }
 
 export default Products;

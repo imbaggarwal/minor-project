@@ -5,14 +5,32 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import Offcanvas from 'react-bootstrap/Offcanvas';
-import React from 'react';
+import React,{useState, useEffect} from 'react';
+import {useNavigate} from "react-router-dom";
 
 function NavbarBar() {
+
+  //const[showSection, setShowSection] = useState(false);
+  let navigate = useNavigate();
+
+//  useEffect(() => {
+//     if(localStorage.getItem("user")!=="user"){
+//       setShowSection(true);
+//     }
+//     else{
+//       setShowSection(false);
+//     }}, []);
+
+  function handleLogOut(event){
+    event.preventDefault();
+    localStorage.setItem('user',"user");
+    navigate("/");
+  }
   return (
     <>
         <Navbar expand='md' className="mb-3 navbar" fixed="top" >
           <Container fluid>
-            <Navbar.Brand href="#" className="navBar-text">Bidding</Navbar.Brand>
+            <Navbar.Brand href="#" className="navBar-text">Auctioning</Navbar.Brand>
             <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-md`} />
             <Navbar.Offcanvas
               id={`offcanvasNavbar-expand-sm`}
@@ -28,19 +46,19 @@ function NavbarBar() {
                 <Nav className="justify-content-end flex-grow-1 pe-3">
                   <Nav.Link href="#action1" className="navBar-text">Home</Nav.Link>
                   <Nav.Link href="#action2" className="navBar-text">About</Nav.Link>
-                  <NavDropdown
-                    title="More"
+                  <NavDropdown 
+                    title={"Hi "+localStorage.getItem("user")}
                     id={`offcanvasNavbarDropdown-expand-md`}
                     className="navBar-text"
   
                   >
                     
                     <NavDropdown.Item href="#action4">
-                      Contact
+                      My Bids
                     </NavDropdown.Item>
                     <NavDropdown.Divider />
-                    <NavDropdown.Item href="#action5">
-                      Gallary
+                    <NavDropdown.Item onClick={handleLogOut}>
+                      Log-out
                     </NavDropdown.Item>
                   </NavDropdown>
                 </Nav>

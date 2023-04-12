@@ -4,40 +4,39 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
+
+
 function Sell(){
+
     return (
     <div className="auth-wrapper">
     <div className="auth-inner sell">
     <Container fluid>
     <Row>
     <Col sm>
-      <form encType='multipart/form-data'>
+      <form encType='multipart/form-data'  method ="post" >
         <h3>Item Details</h3>
         <div className="mb-3">
           <label>Name</label>
-          <input type="text" className="form-control" placeholder="Product Name" />
+          <input type="text" name = "name" className="form-control" placeholder="Product Name" required />
         </div>
         <div className="mb-3">
           <label>Description</label>
-          <input type="text" className="form-control" placeholder="Product Description"/>
+          <input type="text" name = "description" className="form-control" placeholder="Product Description" />
         </div>
         <div className="mb-3">
           <label>Base Price</label>
-          <input type="text" className="form-control" placeholder="Enter min. selling price"/>
-        </div>
-        <div className="mb-3">
-          <label>Bid till</label>
-          <input type="time" className="form-control" placeholder="Enter last bidding time"/>
-          <small>Enter last biding time</small>
+          <input type="number" name = "price" className="form-control" placeholder="Enter min. selling price" required />
         </div>
         <div className="mb-3">
           <label>Upload photo</label>
-          <input type="file" accept=".png,.jpeg,.jpg" className="form-control" alt="Image"/>
+          <input type="file"  name = "photo" id ="photo" accept=".png,.jpeg,.jpg" className="form-control" alt="Image" required />
         </div>
-        <div className="d-grid">
-          <Button type="submit" href="/products" className="btn btn-primary">
-            Upload
-          </Button>
+        <div className="d-grid sell-btn">
+        <span>
+        <Button type="submit"  className="btn btn-primary uploadBtn"> Upload </Button>
+        <Button type="submit"  className="btn btn-danger cancelBtn" href="/products"> Cancel </Button>
+        </span>
         </div>
        
       </form>
