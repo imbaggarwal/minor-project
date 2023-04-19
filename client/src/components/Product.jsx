@@ -11,6 +11,7 @@ function Product(props){
 //------------------------bid button pop up----------------------------------
   const [show, setShow] = useState(false);
   const [showAlert, setAlert] = useState(false);
+  const[disable, setDisable] = useState(false);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -18,7 +19,8 @@ function Product(props){
   const[data,setData] = useState({
     productName : props.name,
     bid:0,
-    bidder: localStorage.getItem("user")
+    bidder: localStorage.getItem("userId"),
+    image:props.img
   });
 
   function handleChange(event){
@@ -40,6 +42,7 @@ function Product(props){
       setAlert(true);
     }
     else{
+      setDisable(true);
       axios
     .post("/products", data,
       {headers: {
@@ -97,7 +100,7 @@ function Product(props){
                 <p>{props.description}</p>
             </Row>
             <Row className="product-btn">
-                <span> <Button variant="primary" className="bid" onClick={handleShow}>Bid</Button> 
+                <span> <Button variant="primary" className="bid" onClick={handleShow} disabled={disable}>{props.price}</Button> 
                 <Button variant="warning" className="timer"><Countdown date={Date.now()+86400000}/></Button>
                 </span>
             </Row>

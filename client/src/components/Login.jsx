@@ -42,7 +42,8 @@ function Login(){
         if(res.data === "error"){
             setShow(true);
         }else{
-          localStorage.setItem('user', res.data);
+          localStorage.setItem('user', res.data.name);
+          localStorage.setItem('userId',res.data.email);
           navigate("/products");
         };
     });

@@ -3,12 +3,15 @@ import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import NavbarBar from './Navbar';
 
 
 
 function Sell(){
 
     return (
+    <>
+    <NavbarBar/>
     <div className="auth-wrapper">
     <div className="auth-inner sell">
     <Container fluid>
@@ -30,7 +33,7 @@ function Sell(){
         </div>
         <div className="mb-3">
           <label>Upload photo</label>
-          <input type="file"  name = "photo" id ="photo" accept=".png,.jpeg,.jpg" className="form-control" alt="Image" required />
+          <input type="file"  name = "photo" id ="photo" accept="image/*" className="form-control" alt="Image" required />
         </div>
         <div className="d-grid sell-btn">
         <span>
@@ -45,6 +48,7 @@ function Sell(){
     </Container>
       </div>
       </div>
+      </>
     );
 
 }

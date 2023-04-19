@@ -30,7 +30,7 @@ function NavbarBar() {
     <>
         <Navbar expand='md' className="mb-3 navbar" fixed="top" >
           <Container fluid>
-            <Navbar.Brand href="#" className="navBar-text">Auctioning</Navbar.Brand>
+            <Navbar.Brand href="/products" className="navBar-text">Auctioning</Navbar.Brand>
             <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-md`} />
             <Navbar.Offcanvas
               id={`offcanvasNavbar-expand-sm`}
@@ -44,16 +44,16 @@ function NavbarBar() {
               </Offcanvas.Header>
               <Offcanvas.Body>
                 <Nav className="justify-content-end flex-grow-1 pe-3">
-                  <Nav.Link href="#action1" className="navBar-text">Home</Nav.Link>
-                  <Nav.Link href="#action2" className="navBar-text">About</Nav.Link>
+                  <Nav.Link href="/products" className="navBar-text">Home</Nav.Link>
+                  <Nav.Link href="/about" className="navBar-text">About</Nav.Link>
                   <NavDropdown 
                     title={"Hi "+localStorage.getItem("user")}
+                    
                     id={`offcanvasNavbarDropdown-expand-md`}
                     className="navBar-text"
-  
                   >
                     
-                    <NavDropdown.Item href="#action4">
+                    <NavDropdown.Item href="/bids">
                       My Bids
                     </NavDropdown.Item>
                     <NavDropdown.Divider />
@@ -62,15 +62,7 @@ function NavbarBar() {
                     </NavDropdown.Item>
                   </NavDropdown>
                 </Nav>
-                <Form className="d-flex">
-                  <Form.Control
-                    type="search"
-                    placeholder="Search"
-                    className="me-2"
-                    aria-label="Search"
-                  />
-                  <Button variant="outline-light">Search</Button>
-                </Form>
+              
               </Offcanvas.Body>
             </Navbar.Offcanvas>
           </Container>

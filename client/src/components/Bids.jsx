@@ -7,8 +7,12 @@ import axios from 'axios';
 import Alert from 'react-bootstrap/Alert';
 import Toast from 'react-bootstrap/Toast';
 import Modal from 'react-bootstrap/Modal';
+import {useNavigate} from "react-router-dom";
 
 function Bids(props){
+
+  
+  let navigate = useNavigate();
     //use props to extract name image and price active and inactive buttons for expired bids?
     const [show, setShow] = useState(false);
     const [showAlert, setAlert] = useState(false);
@@ -17,9 +21,9 @@ function Bids(props){
     const handleShow = () => setShow(true);
   
     const[data,setData] = useState({
-      productName : props.name,
-      bid:0,
-      bidder: localStorage.getItem("user")
+      productName : props.prodName,
+      bid:props.bidVal,
+      bidder: localStorage.getItem("userId")
     });
   
     function handleChange(event){
@@ -36,19 +40,24 @@ function Bids(props){
      }
   
     function doSubmit(){
-      console.log("submitted");
-      if(data.bid<props.price){
+
+      if(data.bid<props.high){
         setAlert(true);
       }
       else{
-      //   axios
-      // .post("/bid", data,
-      //   {headers: {
-      //     'Content-Type': 'application/json' 
-      //   }}
-      // )
-      // .then(res => console.log("sent"+res))
-      // .catch(err => console.log("dint"+err));
+        console.log(data);
+        axios
+      .put("/bids", data,
+        {headers: {
+          'Content-Type': 'application/json' 
+        }}
+      )
+      .then(function (res) {
+        console.log(res.data);
+          navigate("/bids");
+        
+    });
+      
       handleClose();
       }
       
@@ -56,6 +65,17 @@ function Bids(props){
 
     function handleDelete(event){
       //will remove element from database
+        axios
+      .post("/bids", data,
+        {headers: {
+          'Content-Type': 'application/json' 
+        }}
+      )
+      .then(function (res) {
+        console.log(res.data);
+          navigate("/bids");
+        
+    });
     }
 
 
@@ -63,7 +83,7 @@ function Bids(props){
       <>
       <Modal show={show} onHide={handleClose}>
       <Modal.Header closeButton>
-        <Modal.Title>{props.name} Update Bid</Modal.Title>
+        <Modal.Title>{props.prodName} Update Bid</Modal.Title>
       </Modal.Header>
       <Modal.Body>
       
@@ -71,15 +91,15 @@ function Bids(props){
       <Toast.Header>
         <strong className="me-auto">Error</strong>
       </Toast.Header>
-      <Toast.Body>Min bid price is {props.price}</Toast.Body>
+      <Toast.Body>Min bid price is {props.high+1}</Toast.Body>
     </Toast>
   
       <form >
-          <input type="Number" name = "bid"  placeholder={props.price} min={props.price} required onChange={handleChange}></input>
+          <input type="Number" name = "bid"  placeholder={props.high+1} min={props.high+1} required onChange={handleChange}></input>
       </form>
       </Modal.Body>
       <Modal.Footer>
-        <Button type ="submit" variant="success" onClick={doSubmit} >
+        <Button type ="submit" href = "/bids" variant="success" onClick={doSubmit} >
           Confirm
         </Button>
         <Button variant="danger" onClick={handleClose}>
@@ -94,14 +114,14 @@ function Bids(props){
       <Card className="product-card">
       <Card.Body>
       <Row>
-        <Col><img className="card-img" src="productImages/SymphonyOfDance.jpg" alt = ""></img></Col>
+        <Col><img className="card-img" src= {props.URL} alt = ""></img></Col>
         <Col>
-        <Card.Title>Symphony</Card.Title>
+        <Card.Title>{props.prodName}</Card.Title>
         <Card.Text>
-            Bid: 1000
+            Bid: {props.bidVal}
             <br></br>
             <Button className="bid-btn" variant="warning" onClick={handleShow}>Update bid</Button>
-            <Button className ="bid-btn" variant="danger" onClick={handleDelete}>Delete bid</Button>
+            <Button className ="bid-btn" href ="/bids" variant="danger" onClick={handleDelete}>Delete bid</Button>
         </Card.Text></Col>
       </Row>
       </Card.Body>
